@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - First Name Last Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in 0.75in;
+            background: #fff;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 18pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+        
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .section {
+            margin-bottom: 18px;
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .section-content {
+            font-size: 11pt;
+        }
+        
+        .summary-text {
+            text-align: justify;
+            line-height: 1.5;
+        }
+        
+        .education-item,
+        .experience-item,
+        .project-item,
+        .volunteer-item {
+            margin-bottom: 12px;
+        }
+        
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+        
+        .item-title {
+            font-weight: bold;
+        }
+        
+        .item-date {
+            font-style: italic;
+            white-space: nowrap;
+        }
+        
+        .item-subtitle {
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+        
+        .item-location {
+            margin-bottom: 4px;
+        }
+        
+        ul {
+            margin-left: 25px;
+            margin-top: 6px;
+        }
+        
+        ul li {
+            margin-bottom: 4px;
+        }
+        
+        .skills-list {
+            list-style-type: disc;
+        }
+        
+        .job-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 11pt;
+        }
+        
+        .company-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        
+        .achievements-list li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>FIRST NAME LAST NAME</h1>
+        <div class="contact-info">
+            Chicago, IL | 312-468-3581 | <a href="mailto:name@gmail.com">name@gmail.com</a> | 
+            <a href="https://www.linkedin.com/in/yes2possibility/" target="_blank">https://www.linkedin.com/in/yes2possibility/</a>
+        </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section">
+        <div class="section-title">SUMMARY</div>
+        <div class="section-content">
+            <p class="summary-text">
+                Determined and passionate computer science graduate student, excited to create, manage, 
+                and deliver content to solve problems within organizations, collaborating with teams, 
+                and using my superb technology skills, at a fast-growing, innovative company.
+            </p>
+        </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="section-content">
+            <div class="education-item">
+                <div class="item-header">
+                    <span class="item-title">Illinois Institute of Technology, Chicago, IL</span>
+                    <span class="item-date">MAY 2023</span>
+                </div>
+                <div class="item-subtitle">Master of Science, Computer Science, GPA, 3.6</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="item-header">
+                    <span class="item-title">University of Illinois, Champaign, IL</span>
+                    <span class="item-date">MAY 2020</span>
+                </div>
+                <div class="item-subtitle">Bachelor of Science, Engineering, GPA 3.8</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="section-content">
+            <ul class="skills-list">
+                <li><strong>TECHNOLOGY:</strong> | Auto-cad | 3D modeling software</li>
+                <li><strong>OTHER:</strong> Proficient in MS Office suite | Google Suite | Product development |</li>
+                <li><strong>LANGUAGES:</strong> English and Spanish</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- WORK EXPERIENCE -->
+    <div class="section">
+        <div class="section-title">WORK EXPERIENCE</div>
+        <div class="section-content">
+            <div class="experience-item">
+                <div class="job-title">SENIOR ENGINEER</div>
+                <div class="company-info">
+                    <span>Avanade Consulting Group, Chicago, IL</span>
+                    <span class="item-date">SEPT 2020 - Dec 2022</span>
+                </div>
+                <ul>
+                    <li>Managed and coordinated multiple cross function automation projects by reducing 40% 
+                        of the resource allocation and increasing the production rate by 15%.</li>
+                    <li>Redesigned machines in production with appropriate production rate planning for 
+                        multiple projects.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">ENGINEER INTERN</div>
+                <div class="company-info">
+                    <span>Auto Tech Limited, Detroit, MI</span>
+                    <span class="item-date">Jun 2019 - AUG 2019</span>
+                </div>
+                <ul>
+                    <li>Assisted team in retro fitment design activities and continuously supported the 
+                        service team to implement the new design concept on site.</li>
+                    <li>Actively involved in new vendor development, creating presentations, and coordinating 
+                        meetings on a weekly basis for senior leadership and other departments.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT EXPERIENCE -->
+    <div class="section">
+        <div class="section-title">PROJECT EXPERIENCE</div>
+        <div class="section-content">
+            <div class="project-item">
+                <div class="item-header">
+                    <span class="item-title">Project Name:</span>
+                    <span class="item-date">JAN 2023 - present</span>
+                </div>
+                <ul>
+                    <li>List project details/description</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- VOLUNTEER EXPERIENCE -->
+    <div class="section">
+        <div class="section-title">VOLUNTEER EXPERIENCE</div>
+        <div class="section-content">
+            <div class="volunteer-item">
+                <div class="job-title">Tutor</div>
+                <div class="company-info">
+                    <span>Chicago Consulting, Inc</span>
+                    <span class="item-date">Jun 2017 - jun 2019</span>
+                </div>
+                <ul>
+                    <li>Tutored dozens of students, ages 10-18 in multiple subjects including math and 
+                        science on a weekly basis during undergraduate degree.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- HONORS AND ACHIEVEMENTS -->
+    <div class="section">
+        <div class="section-title">HONORS AND ACHIEVEMENTS</div>
+        <div class="section-content">
+            <ul class="achievements-list">
+                <li>Dean's List at Illinois Tech, multiple semesters <span style="float: right; font-style: italic;">JAN 2023</span></li>
+                <li>MVP award at Chicago Engineering Competition <span style="float: right; font-style: italic;">MAY 2022</span></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
