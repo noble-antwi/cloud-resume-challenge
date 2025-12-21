@@ -157,4 +157,28 @@ http-server is a simple, zero-configuration command-line HTTP server that's perf
 
 The server will automatically serve the `index.html` file and your stylesheet will load from `/assets/stylesheets/style.css`
 
+## Recent Updates (December 2025)
 
+### Visual & Design Enhancements
+- **Background Image**: Added `golden-frame-blue-background.jpg` as the resume background for a professional, elegant appearance
+- **Content Layout**: Centered the entire CV on the page with maximum width constraint for optimal readability
+- **Header Styling**: Centered the name and contact information section with semi-transparent white background and subtle shadow
+- **Background Integration**: Improved content visibility with semi-transparent backgrounds for header, main content, and sections while keeping the background image visible
+
+### Certificates Section Redesign
+- **Restructured Format**: Converted from simple list to a structured line-by-line format with better visual organization
+- **Enhanced Structure**: Each certificate now clearly displays:
+  - Certificate title (with underline to indicate clickability)
+  - Issuing organization (with subtle background badge)
+  - Date earned (right-aligned)
+- **Interactive Elements**: 
+  - Added hover effects (cards lift and brighten on mouseover)
+  - Made all certificates clickable links (ready for adding certificate URLs)
+  - Implemented smooth transitions and visual feedback
+- **Visual Distinction**: Each certificate is clearly separated with borders, backgrounds, and distinct styling for easy identification
+
+### Technical Implementation
+- Pure CSS styling with CSS variables for maintainability
+- No external frameworks or dependencies
+- Responsive design that adapts to different screen sizes
+- Browser cache considerations for seeing latest changes (use Ctrl+Shift+R or Cmd+Shift+R)
