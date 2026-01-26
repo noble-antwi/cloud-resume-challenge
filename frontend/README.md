@@ -1,184 +1,172 @@
 # Frontend Technical Specification
 
-- Create a static website that serves asn html Resume.
+A responsive, mobile-first resume website built with React and Vite.
 
-## Resume Format Considerations
+## Tech Stack
 
-I live in Chicago, USA and dresumes in word/pdf formats are suppose toe xclude personally identifiable infomraitons like Phone Number, Sex or Address. 
+- **Framework**: React 19
+- **Build Tool**: Vite 5
+- **Styling**: Pure CSS with CSS Variables (mobile-first approach)
+- **CSS Processing**: PostCSS with nesting support
+- **Routing**: React Router DOM
 
-I will be using the [Illinois Institute of Technology (IIT)](https://www.iit.edu/sites/default/files/2023-03/new_sample_resume_iltech_1.doc) Template format as the basis of my this resume challenge project.
+## Getting Started
 
-### Illinois Tech Resume Format Generation
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm
 
-I know html quite well so I will let Gen AI do the heavy lifting to generate the HTML and possibly CSS and then on i will refactor manually the code to meet my preffered standard.
+### Installation
 
-Prompt to Claude
+```bash
+cd frontend
+npm install
+```
 
-```text
-Convert this resume format into htmml
+### Development
 
-````
+```bash
+npm run dev
+```
 
-Image provided to Claude LLM or  use the attached [MS Word file](./docs/IIT_Resume_Format.doc)
-![](./docs/IIT_Resume_Format.png)
+Open `http://localhost:5173` to view the resume.
 
-This is the [generated output](./docs/resume_format%20-%20Nov-27-2025.html) which i will further work on as i go on
+### Production Build
 
-## HTML Adjustments
+```bash
+npm run build
+npm run preview  # Preview the production build
+```
 
-- UTF-8 will support most languages so keepin that.
-- We'll extract our styles into its onw stylesheet after completing the html markup
+## Project Structure
 
-## CSS Styling System
+```
+frontend/
+├── public/
+│   └── images/           # Background images
+├── src/
+│   ├── components/
+│   │   └── Navbar.jsx    # Responsive navigation with hamburger menu
+│   ├── pages/
+│   │   └── Home.jsx      # Main resume content
+│   ├── styles/
+│   │   ├── variables.css    # CSS custom properties & design tokens
+│   │   ├── mobile.css       # Base mobile-first styles
+│   │   ├── breakpoints.css  # Tablet & desktop responsive overrides
+│   │   ├── accessibility.css # Reduced motion & high contrast support
+│   │   └── style.css        # Additional component styles
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css         # CSS imports orchestration
+├── postcss.config.js     # PostCSS configuration for CSS nesting
+├── vite.config.js
+└── package.json
+```
 
-The resume uses a comprehensive, professional stylesheet built with pure CSS and CSS variables for maintainability and scalability.
+## CSS Architecture
 
-### Design Philosophy
+### Mobile-First Approach
 
-- **Professional & Elegant**: Minimalist design suitable for cybersecurity and cloud engineering roles
-- **Tech-Forward**: Inspired by high-end tech resumes from Google, AWS, and consulting firms
-- **Accessible**: WCAG-compliant with clear focus states and readable font sizes
-- **Performance-Optimized**: No frameworks, pure CSS with efficient selectors
+Styles are organized following a mobile-first methodology:
 
-### CSS Design System
+1. **variables.css** - Design tokens (colors, typography, spacing)
+2. **mobile.css** - Base styles optimized for mobile devices
+3. **breakpoints.css** - Progressive enhancements for larger screens
+4. **accessibility.css** - User preference support (reduced motion, high contrast)
+5. **style.css** - Additional component-specific styles
+
+### Responsive Breakpoints
+
+| Breakpoint | Target |
+|------------|--------|
+| Base (default) | Mobile phones |
+| `640px` | Tablets |
+| `1024px` | Desktop |
+| `1440px` | Large desktop |
+
+### Design System
 
 #### Color Palette
 
-- **Primary Color**: Deep slate blue (`#1e3a5f`) - used for headings and accents
-- **Primary Light**: Lighter variant (`#2d5a8c`) - for hover states
-- **Text Dark**: `#1f2937` - main content text
-- **Text Light**: `#6b7280` - secondary text and descriptions
-- **Accent Teal**: `#0d9488` - subtle accents for titles and positions
-- **Backgrounds**: White and light gray for clean separation
+| Variable | Value | Usage |
+|----------|-------|-------|
+| `--color-primary` | `#1e3a5f` | Headers, accents |
+| `--color-primary-light` | `#2d5a8c` | Hover states |
+| `--color-accent-teal` | `#06b6d4` | Highlights |
+| `--color-text-dark` | `#1f2937` | Body text |
+| `--color-text-light` | `#6b7280` | Secondary text |
 
 #### Typography
 
-- **Font Family**: System fonts (-apple-system, BlinkMacSystemFont, Segoe UI, Roboto)
-- **Font Sizes**: Scaling from `0.875rem` (14px) to `2rem` (32px)
-- **Line Heights**: Optimized for readability (1.3 - 1.7)
-- **Font Weights**: 400 (normal) to 700 (bold)
+- **Font Family**: Segoe UI, Tahoma, Geneva, Verdana, sans-serif
+- **Font Sizes**: `0.875rem` to `2rem` (responsive)
+- **Font Weights**: 500 (medium), 600 (semibold), 700 (bold)
 
-#### Spacing System
+#### Spacing Scale
 
-Consistent spacing scale from `0.25rem` to `3rem` for margins, padding, and gaps:
-- `--spacing-xs`: 4px
-- `--spacing-sm`: 8px
-- `--spacing-md`: 16px
-- `--spacing-lg`: 24px
-- `--spacing-xl`: 32px
-- `--spacing-2xl`: 48px
+```css
+--spacing-xs: 0.25rem   /* 4px */
+--spacing-sm: 0.5rem    /* 8px */
+--spacing-md: 1rem      /* 16px */
+--spacing-lg: 1.5rem    /* 24px */
+--spacing-xl: 2rem      /* 32px */
+--spacing-2xl: 2.5rem   /* 40px */
+```
 
-#### Layout Features
+## Features
 
-- **Maximum Width**: 900px container for optimal readability
-- **Visual Hierarchy**: Clear section separators with subtle blue borders
-- **White Space**: Generous spacing for elegant presentation
-- **Section Styling**: Each section (Education, Skills, Experience, etc.) has consistent styling with clear visual separation
+### Responsive Navigation
 
-### CSS Organization
+- **Mobile**: Hamburger menu with slide-down dropdown
+- **Desktop**: Horizontal navigation bar with hover effects
+- Smooth transitions and accessible focus states
 
-The stylesheet is organized into logical sections:
+### Accessibility
 
-1. **CSS Variables** - Design system definitions
-2. **Reset & Base Styles** - Normalization and defaults
-3. **Typography** - Heading and text styles
-4. **Links & Interactions** - Hover and focus states
-5. **Layout & Container** - Core layout structure
-6. **Header / Contact Section** - Name, title, and contact information
-7. **Main Content** - Main resume sections
-8. **Section Styling** - Individual entry styling
-9. **Lists** - Bullet and numbered lists
-10. **Skills Section** - Skills grid layout
-11. **Certifications** - Badge and certification styling
-12. **Print Styles** - Optimized for printing
-13. **Responsive Design** - Mobile and tablet breakpoints
-14. **Accessibility** - WCAG compliance and preference-based styles
-15. **Performance** - Optimization comments
+- WCAG-compliant color contrast
+- Keyboard navigation support
+- `prefers-reduced-motion` support
+- `prefers-contrast: more` support
+- Visible focus indicators
 
-### Responsive Design
+### Performance
 
-- **Desktop**: Full layout with optimal spacing
-- **Tablet (768px and below)**: Adjusted spacing and font sizes
-- **Mobile (480px and below)**: Optimized for small screens with single-column layout
+- No CSS frameworks (minimal bundle size)
+- Efficient CSS selectors
+- Hardware-accelerated animations
+- Optimized for Core Web Vitals
 
-### Accessibility Features
+## Resume Format
 
-- **WCAG Compliance**: Proper color contrast ratios
-- **Focus States**: Clear visible focus indicators for keyboard navigation
-- **Readability**: Comfortable font sizes and line heights
-- **Prefers-Reduced-Motion**: Respects user's motion preferences
-- **High Contrast Mode**: Support for users requiring higher contrast
-- **Dark Mode**: Optional dark theme based on system preference
+Based on the [Illinois Institute of Technology Resume Template](https://www.iit.edu/sites/default/files/2023-03/new_sample_resume_iltech_1.doc).
 
-### CSS Variables for Easy Maintenance
+### Sections
 
-All colors, fonts, and spacing are defined as CSS variables at the root level, making it easy to:
-- Update the color scheme globally
-- Adjust spacing and sizing
-- Maintain consistency throughout the design
-- Support different themes (e.g., dark mode)
+- Header (Name, Contact, Links)
+- Education
+- Skills
+- Work Experience
+- Certificates
+- Publications
+- Leadership & Activities
 
-## Serving the Static Website Locally
+## Browser Support
 
-To serve the frontend locally during development, you'll need to install and use `http-server`.
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
 
-### Installing http-server
+## Recent Updates (January 2026)
 
-http-server is a simple, zero-configuration command-line HTTP server that's perfect for serving static files.
+### Mobile-First Refactor
+- Migrated from static HTML to React + Vite
+- Implemented mobile-first CSS architecture
+- Added collapsible hamburger menu for mobile navigation
+- Split CSS into modular files for better maintainability
 
-#### Prerequisites
-- Node.js and npm must be installed on your system
-
-#### Installation Steps
-
-1. **Install http-server globally** (recommended for easy access from any directory):
-   ```bash
-   npm install -g http-server
-   ```
-
-2. **Or install locally** in your project directory:
-   ```bash
-   npm install http-server
-   ```
-
-#### Usage
-
-1. Navigate to the `public` directory:
-   ```bash
-   cd frontend/public
-   ```
-
-2. Start the server:
-   ```bash
-   http-server
-   ```
-
-3. Open your browser and visit `http://localhost:8080` to view your resume
-
-The server will automatically serve the `index.html` file and your stylesheet will load from `/assets/stylesheets/style.css`
-
-## Recent Updates (December 2025)
-
-### Visual & Design Enhancements
-- **Background Image**: Added `golden-frame-blue-background.jpg` as the resume background for a professional, elegant appearance
-- **Content Layout**: Centered the entire CV on the page with maximum width constraint for optimal readability
-- **Header Styling**: Centered the name and contact information section with semi-transparent white background and subtle shadow
-- **Background Integration**: Improved content visibility with semi-transparent backgrounds for header, main content, and sections while keeping the background image visible
-
-### Certificates Section Redesign
-- **Restructured Format**: Converted from simple list to a structured line-by-line format with better visual organization
-- **Enhanced Structure**: Each certificate now clearly displays:
-  - Certificate title (with underline to indicate clickability)
-  - Issuing organization (with subtle background badge)
-  - Date earned (right-aligned)
-- **Interactive Elements**: 
-  - Added hover effects (cards lift and brighten on mouseover)
-  - Made all certificates clickable links (ready for adding certificate URLs)
-  - Implemented smooth transitions and visual feedback
-- **Visual Distinction**: Each certificate is clearly separated with borders, backgrounds, and distinct styling for easy identification
-
-### Technical Implementation
-- Pure CSS styling with CSS variables for maintainability
-- No external frameworks or dependencies
-- Responsive design that adapts to different screen sizes
-- Browser cache considerations for seeing latest changes (use Ctrl+Shift+R or Cmd+Shift+R)
+### CSS Improvements
+- Added PostCSS for CSS nesting support
+- Implemented CSS custom properties for theming
+- Added accessibility stylesheets for user preferences
+- Fixed CSS syntax errors that prevented app loading
