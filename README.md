@@ -1,153 +1,109 @@
 # Cloud Resume Challenge
 
-A full-stack cloud-native resume website built as part of the [Cloud Resume Challenge](https://cloudresumechallenge.dev/).
+My resume as a cloud-hosted website, built step by step for the [Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/) on AWS. The challenge covers what a cloud engineer does day to day: a static frontend, a serverless API, a database, infrastructure as code, and CI/CD.
 
-## About
+> **Status: in progress.** The React frontend is complete and runs locally. AWS hosting, the visitor counter API, infrastructure as code, and CI/CD are the next stages. See [Roadmap](#roadmap).
 
-This project demonstrates cloud engineering skills by building and deploying a professional resume website with:
+![Resume page](docs/images/resume-page.png)
 
-- Static frontend hosted on cloud infrastructure
-- Serverless backend API
-- Infrastructure as Code (IaC)
-- CI/CD automation
+## What is built today
+
+- **Three pages:** Home, Resume, and Projects, with client-side routing.
+- **The resume itself:** styled as a printed page, one shared layout for every entry, and readable on phones and in print.
+- **Content kept apart from code:** everything the site says lives in two data files, so updating the resume never touches layout code.
+- **A clean build:** lint and production build both pass, and dependencies are pinned with a lockfile.
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         FRONTEND                                 │
-│  ┌─────────┐    ┌──────────────┐    ┌─────────────────────┐    │
-│  │ React + │───▶│ S3 Static   │───▶│ CloudFront CDN     │    │
-│  │ Vite    │    │ Hosting      │    │ (HTTPS + Caching)  │    │
-│  └─────────┘    └──────────────┘    └─────────────────────┘    │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         BACKEND                                  │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────────┐     │
-│  │ API Gateway │───▶│ Lambda      │───▶│ DynamoDB        │     │
-│  │ (REST API)  │    │ (Python)    │    │ (Visitor Count) │     │
-│  └─────────────┘    └─────────────┘    └─────────────────┘     │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      INFRASTRUCTURE                              │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ Terraform / AWS SAM (Infrastructure as Code)            │   │
-│  └─────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
+Solid boxes are built. Dashed boxes are planned.
+
+```mermaid
+flowchart LR
+    user([Visitor]) --> cf[CloudFront<br/>HTTPS + CDN]
+    cf --> s3[S3 bucket<br/>React build]
+    s3 -. page loads, calls .-> api[API Gateway]
+    api -.-> fn[Lambda<br/>Python]
+    fn -.-> db[(DynamoDB<br/>visitor count)]
+    app[React + Vite app] -- npm run build --> s3
+
+    classDef built fill:#e8f5e9,stroke:#2f7d32,color:#111;
+    classDef planned fill:#fff,stroke:#888,stroke-dasharray:4 3,color:#555;
+    class app built;
+    class cf,s3,api,fn,db planned;
 ```
 
-## Project Structure
+All AWS resources will be defined as code and deployed by GitHub Actions on every push to `main`.
 
-```
-cloud-resume-challenge/
-├── frontend/          # React + Vite website (Home, Resume, Projects)
-│   ├── public/        # Files served as-is (favicon, background)
-│   ├── src/
-│   │   ├── assets/stylesheets/   # default, breakpoints, one file per page
-│   │   ├── components/           # layout/, resume/, projects/
-│   │   ├── data/                 # resume and project content
-│   │   ├── pages/                # one component per route
-│   │   ├── Layout.jsx            # shared top bar + page outlet
-│   │   └── main.jsx              # router and global styles
-│   └── README.md      # Frontend documentation
-├── docs/reference/    # IIT resume format used as the content guide
-├── backend/           # Lambda functions (coming soon)
-├── infrastructure/    # Terraform/SAM templates (coming soon)
-└── README.md          # This file
-```
+## Roadmap
+
+Progress against the 16 steps of the challenge.
+
+| # | Step | Status |
+|---|------|--------|
+| 1 | Certification | Done: AWS Solutions Architect Associate, SysOps Administrator, Security Specialty |
+| 2 | Resume written in HTML | Done (React components) |
+| 3 | Styled with CSS | Done |
+| 4 | Static website on S3 | Next |
+| 5 | HTTPS with CloudFront | Planned |
+| 6 | Custom domain (Route 53) | Planned |
+| 7 | JavaScript visitor counter | Planned |
+| 8 | DynamoDB table for the count | Planned |
+| 9 | API Gateway + Lambda | Planned |
+| 10 | Lambda written in Python | Planned |
+| 11 | Tests for the Lambda | Planned |
+| 12 | Infrastructure as code | Planned |
+| 13 | Source control | Done (this repo) |
+| 14 | CI/CD for the backend | Planned |
+| 15 | CI/CD for the frontend | Planned |
+| 16 | Blog post about the build | Planned |
 
 ## Tech Stack
 
-### Frontend
-- **Framework**: React 19
-- **Build Tool**: Vite 5
-- **Routing**: React Router 7
-- **Styling**: Plain CSS, one stylesheet per page
-- **CSS Processing**: PostCSS
+| Layer | Built with | Status |
+|-------|-----------|--------|
+| Frontend | React 19, Vite 5, React Router 7, plain CSS | Done |
+| Hosting | Amazon S3, CloudFront, Route 53, ACM | Planned |
+| API | API Gateway, AWS Lambda (Python) | Planned |
+| Database | Amazon DynamoDB | Planned |
+| Infrastructure | Infrastructure as code (tool chosen at that stage) | Planned |
+| CI/CD | GitHub Actions | Planned |
 
-### Backend (Planned)
-- **Runtime**: Python 3.x
-- **API**: AWS API Gateway
-- **Compute**: AWS Lambda
-- **Database**: AWS DynamoDB
+## Repository Layout
 
-### Infrastructure (Planned)
-- **IaC**: Terraform or AWS SAM
-- **Hosting**: AWS S3 + CloudFront
-- **DNS**: Route 53
-- **SSL**: AWS Certificate Manager
+```
+cloud-resume-challenge/
+├── frontend/           React + Vite website (see frontend/README.md)
+│   ├── public/         favicon and background texture
+│   └── src/
+│       ├── pages/      Home, Resume, Projects, Not Found
+│       ├── components/ layout/, resume/, projects/
+│       ├── data/       resume and project content
+│       └── assets/stylesheets/
+└── docs/
+    ├── images/         screenshots for this README
+    └── reference/      IIT resume format used as the content guide
+```
 
-### CI/CD (Planned)
-- **Pipeline**: GitHub Actions
-- **Testing**: pytest, Cypress
-- **Deployment**: Automated on push to main
+Backend and infrastructure folders will be added when those stages start.
 
-## Progress
+## Run It Locally
 
-| Phase | Status |
-|-------|--------|
-| Resume HTML/CSS | Completed |
-| React Migration | Completed |
-| Mobile Responsive Design | Completed |
-| Home / Resume / Projects pages | Completed |
-| S3 Static Hosting | Planned |
-| CloudFront CDN | Planned |
-| Custom Domain + HTTPS | Planned |
-| Visitor Counter API | Planned |
-| DynamoDB Backend | Planned |
-| Infrastructure as Code | Planned |
-| CI/CD Pipeline | Planned |
-
-## Getting Started
-
-### Frontend Development
+Requires Node.js 18 or newer.
 
 ```bash
 cd frontend
-npm ci
-npm run dev
+npm ci          # install the exact locked versions
+npm run dev     # http://localhost:5173
 ```
 
-Visit `http://localhost:5173` to view the resume.
-
-### Production Build
-
-```bash
-cd frontend
-npm run build
-```
-
-## Challenge Requirements
-
-Based on the [Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/):
-
-1. **Certification** - AWS Cloud Practitioner (or higher)
-2. **HTML** - Resume written in HTML
-3. **CSS** - Styled with CSS
-4. **Static Website** - Deployed to S3
-5. **HTTPS** - CloudFront distribution
-6. **DNS** - Custom domain with Route 53
-7. **JavaScript** - Visitor counter
-8. **Database** - DynamoDB for counter
-9. **API** - API Gateway + Lambda
-10. **Python** - Lambda function in Python
-11. **Tests** - Python tests for Lambda
-12. **Infrastructure as Code** - Terraform or SAM
-13. **CI/CD (Backend)** - Automated deployment
-14. **CI/CD (Frontend)** - Automated deployment
-15. **Blog Post** - Document the journey
+Other commands: `npm run lint` (code checks) and `npm run build` (production build into `frontend/dist/`).
 
 ## Author
 
-**Noble W. Antwi**
+**Noble W. Antwi**, cloud security and identity and access management.
+
 - LinkedIn: [noble-antwi-worlanyo](https://linkedin.com/in/noble-antwi-worlanyo)
 - GitHub: [noble-antwi](https://github.com/noble-antwi)
 - Portfolio: [noble-antwi.github.io](https://noble-antwi.github.io/)
 
-## License
-
-This project is for educational and portfolio purposes as part of the Cloud Resume Challenge.
+Built for the Cloud Resume Challenge created by Forrest Brazeal. The resume layout follows Andrew Brown's course build.
