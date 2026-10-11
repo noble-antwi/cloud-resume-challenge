@@ -1,0 +1,40 @@
+/* Projects page */
+
+.project-list {
+  display: grid;
+  gap: 14px;
+}
+
+.project-card {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.project-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.project-card h2 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.project-card p {
+  margin: 0 0 8px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tags li {
+  padding: 2px 8px;
+  border: 1px solid #999;
+  font-size: 11px;
+}

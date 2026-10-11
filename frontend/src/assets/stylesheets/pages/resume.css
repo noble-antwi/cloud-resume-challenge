@@ -1,0 +1,57 @@
+/* Resume page: header, ruled sections, and two-column entries. */
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.resume-header h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+
+.resume-header p {
+  margin: 0;
+}
+
+.resume-section {
+  margin-bottom: 22px;
+}
+
+.resume-section h2 {
+  margin: 0 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #555;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.entry {
+  margin-bottom: 14px;
+}
+
+.entry-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.entry-location,
+.entry-date {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.entry ul,
+.plain-list {
+  margin: 0;
+  padding-left: 23px;
+}
+
+.plain-list li {
+  margin-bottom: 4px;
+}
+
+.section-note {
+  margin: 0 0 8px;
+}

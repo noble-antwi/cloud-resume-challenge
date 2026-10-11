@@ -1,6 +1,6 @@
-import { resumeData } from '../data/resumeData';
+import { resumeData } from '@/data/resumeData';
 
-export default function Header() {
+export default function ResumeHeader() {
   const { name, location, email, linkedin, portfolio } = resumeData.personal;
   const portfolioLabel = portfolio.replace('https://', '').replace(/\/$/, '');
 

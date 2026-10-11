@@ -1,0 +1,44 @@
+/* Screen-size and print rules. Loaded after default.css and the page styles' base rules. */
+
+/* Phones */
+@media (max-width: 600px) {
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .navbar {
+    gap: 8px;
+  }
+
+  .brand-name {
+    display: none;
+  }
+
+  /* Resume: the right-hand column drops under the left */
+  .entry-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .entry-location,
+  .entry-date {
+    text-align: left;
+  }
+}
+
+/* Print: just the sheet */
+@media print {
+  .navbar {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}

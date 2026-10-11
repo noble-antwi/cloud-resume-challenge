@@ -44,12 +44,17 @@ This project demonstrates cloud engineering skills by building and deploying a p
 
 ```
 cloud-resume-challenge/
-├── frontend/          # React + Vite resume website
+├── frontend/          # React + Vite website (Home, Resume, Projects)
+│   ├── public/        # Files served as-is (favicon, background)
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── styles/
+│   │   ├── assets/stylesheets/   # default, breakpoints, one file per page
+│   │   ├── components/           # layout/, resume/, projects/
+│   │   ├── data/                 # resume and project content
+│   │   ├── pages/                # one component per route
+│   │   ├── Layout.jsx            # shared top bar + page outlet
+│   │   └── main.jsx              # router and global styles
 │   └── README.md      # Frontend documentation
+├── docs/reference/    # IIT resume format used as the content guide
 ├── backend/           # Lambda functions (coming soon)
 ├── infrastructure/    # Terraform/SAM templates (coming soon)
 └── README.md          # This file
@@ -60,7 +65,8 @@ cloud-resume-challenge/
 ### Frontend
 - **Framework**: React 19
 - **Build Tool**: Vite 5
-- **Styling**: CSS with CSS Variables (mobile-first)
+- **Routing**: React Router 7
+- **Styling**: Plain CSS, one stylesheet per page
 - **CSS Processing**: PostCSS
 
 ### Backend (Planned)
@@ -87,6 +93,7 @@ cloud-resume-challenge/
 | Resume HTML/CSS | Completed |
 | React Migration | Completed |
 | Mobile Responsive Design | Completed |
+| Home / Resume / Projects pages | Completed |
 | S3 Static Hosting | Planned |
 | CloudFront CDN | Planned |
 | Custom Domain + HTTPS | Planned |
@@ -101,7 +108,7 @@ cloud-resume-challenge/
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 

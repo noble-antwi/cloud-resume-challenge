@@ -1,4 +1,4 @@
-import { resumeData } from '../data/resumeData';
+import { resumeData } from '@/data/resumeData';
 import Section from './Section';
 
 export default function Skills() {
