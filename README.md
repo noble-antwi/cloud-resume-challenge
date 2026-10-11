@@ -8,7 +8,8 @@ My resume as a cloud-hosted website, built step by step for the [Cloud Resume Ch
 
 ## What is built today
 
-- **Three pages:** Home, Resume, and Projects, with client-side routing.
+- **Home, Resume, and Projects pages**, with client-side routing.
+- **A detail page for every project** (`/projects/<name>`), opened from a "View Project Details" button, with a link to the source on GitHub.
 - **The resume itself:** styled as a printed page, one shared layout for every entry, and readable on phones and in print.
 - **Content kept apart from code:** everything the site says lives in two data files, so updating the resume never touches layout code.
 - **A clean build:** lint and production build both pass, and dependencies are pinned with a lockfile.
@@ -61,7 +62,7 @@ Progress against the 16 steps of the challenge.
 
 | Layer | Built with | Status |
 |-------|-----------|--------|
-| Frontend | React 19, Vite 5, React Router 7, plain CSS | Done |
+| Frontend | React 19, Vite 5, React Router 7, plain CSS | Done (project screenshots still placeholders) |
 | Hosting | Amazon S3, CloudFront, Route 53, ACM | Planned |
 | API | API Gateway, AWS Lambda (Python) | Planned |
 | Database | Amazon DynamoDB | Planned |
@@ -75,7 +76,7 @@ cloud-resume-challenge/
 ├── frontend/           React + Vite website (see frontend/README.md)
 │   ├── public/         favicon and background texture
 │   └── src/
-│       ├── pages/      Home, Resume, Projects, Not Found
+│       ├── pages/      Home, Resume, Projects, Project detail, Not Found
 │       ├── components/ layout/, resume/, projects/
 │       ├── data/       resume and project content
 │       └── assets/stylesheets/

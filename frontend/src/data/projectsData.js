@@ -1,4 +1,6 @@
-// Projects shown on /projects. Descriptions come from each repo's GitHub description.
+// Projects shown on /projects and /projects/:slug.
+// Descriptions come from each repo's GitHub description.
+// Add `image: '/images/projects/<file>'` to a project to replace its placeholder.
 const GITHUB = 'https://github.com/noble-antwi';
 
 export const projects = [
@@ -8,6 +10,7 @@ export const projects = [
     description:
       'This site. A React resume hosted on S3 and CloudFront, with a Lambda and DynamoDB visitor counter, infrastructure as code, and CI/CD.',
     tags: ['AWS', 'React', 'Serverless', 'IaC'],
+    slug: 'cloud-resume-challenge',
     repo: `${GITHUB}/cloud-resume-challenge`,
   },
   {
@@ -16,6 +19,7 @@ export const projects = [
     description:
       'Automated multi-cloud security assessment that scans for misconfigurations with Prowler and ScoutSuite, aggregates findings into one dashboard, and provides IaC-based remediation scripts.',
     tags: ['Multi-cloud', 'Prowler', 'ScoutSuite', 'IaC'],
+    slug: 'cloud-security-posture-dashboard',
     repo: `${GITHUB}/cloud-security-posture-dashboard`,
   },
   {
@@ -24,6 +28,7 @@ export const projects = [
     description:
       'Security Hub, Inspector, GuardDuty, and Automated Security Response working together for exposure analysis, automated remediation, and compliance monitoring, with 40+ automation playbooks.',
     tags: ['AWS', 'Security Hub', 'GuardDuty', 'Automation'],
+    slug: 'aws-security-posture-exposure-mgmt',
     repo: `${GITHUB}/aws-security-posture-exposure-mgmt`,
   },
   {
@@ -32,6 +37,7 @@ export const projects = [
     description:
       'Automated Okta authentication log analyzer for threat detection, failed login monitoring, and MFA analytics, built for IAM incident response.',
     tags: ['Okta', 'IAM', 'Python', 'Detection'],
+    slug: 'okta-security-monitoring-dashboard',
     repo: `${GITHUB}/okta-security-monitoring-dashboard`,
   },
   {
@@ -40,6 +46,7 @@ export const projects = [
     description:
       'Python CLI that finds idle EC2 instances, unattached EBS volumes, outdated snapshots, unused Elastic IPs, and idle RDS databases, with multi-format reporting.',
     tags: ['AWS', 'Python', 'FinOps', 'CLI'],
+    slug: 'aws-cost-optimizer',
     repo: `${GITHUB}/aws-cost-optimizer`,
   },
   {
@@ -48,6 +55,7 @@ export const projects = [
     description:
       'Evolving a WordPress deployment from a single EC2 instance to an elastic, self-healing architecture using RDS, EFS, Auto Scaling, and an Application Load Balancer.',
     tags: ['AWS', 'EC2', 'RDS', 'Auto Scaling'],
+    slug: 'aws-wordpress-arch-evolution',
     repo: `${GITHUB}/aws-wordpress-arch-evolution`,
   },
   {
@@ -56,6 +64,9 @@ export const projects = [
     description:
       'Public site for Biira Bank, the fictional bank behind an enterprise security engineering lab.',
     tags: ['Cloudflare', 'Web security', 'Homelab'],
+    slug: 'biirabank-web',
     repo: `${GITHUB}/biirabank-web`,
   },
 ];
+
+export const findProject = (slug) => projects.find((project) => project.slug === slug);

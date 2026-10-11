@@ -1,6 +1,6 @@
 # Frontend
 
-The resume website: a React + Vite app with three pages (Home, Resume, Projects), styled as a printed resume on handmade paper.
+The resume website: a React + Vite app with Home, Resume, and Projects pages, plus a detail page for each project, styled as a printed resume on handmade paper.
 
 ## Tech Stack
 
@@ -57,11 +57,12 @@ frontend/
 │   │   ├── HomePage.jsx          #   /
 │   │   ├── ResumePage.jsx        #   /resume
 │   │   ├── ProjectsPage.jsx      #   /projects
+│   │   ├── ProjectPage.jsx       #   /projects/:slug (one project)
 │   │   └── NotFoundPage.jsx      #   anything else
 │   ├── components/
 │   │   ├── layout/Navbar.jsx
 │   │   ├── resume/               # ResumeHeader, Section, Entry, and one per resume section
-│   │   └── projects/ProjectCard.jsx
+│   │   └── projects/             # ProjectCard (list row), ProjectImage (screenshot or placeholder)
 │   ├── data/
 │   │   ├── resumeData.js         # all resume content
 │   │   └── projectsData.js       # all project content
@@ -79,6 +80,8 @@ frontend/
 - **Content lives in `src/data/`.** To change what the site says, edit `resumeData.js` or `projectsData.js`. Components only handle layout.
 - **Each page imports its own stylesheet**, for example `import 'css/pages/resume.css'`.
 - **Import from `src` with `@`**, for example `import { resumeData } from '@/data/resumeData'`, instead of `../../`.
+- **Projects need a `slug`** in `projectsData.js`. It becomes the address of the detail page (`/projects/<slug>`).
+- **Project screenshots:** put the file in `public/images/projects/` and add `image: '/images/projects/<file>'` to the project. Without it, a grey 320 x 200 placeholder shows.
 - **Resume entries use `Entry`**: bold title and location on the first row, subtitle and italic date on the second, and optional bullets.
 
 ## Adding a page
@@ -89,7 +92,7 @@ frontend/
 
 ## Hosting note
 
-The pages are client-side routes. When this is deployed to S3 + CloudFront, set CloudFront to return `index.html` for 403/404 errors. Otherwise `/resume` and `/projects` fail when opened directly or refreshed.
+The pages are client-side routes. When this is deployed to S3 + CloudFront, set CloudFront to return `index.html` for 403/404 errors. Otherwise `/resume`, `/projects`, and each project page fail when opened directly or refreshed.
 
 ## Resume Format
 

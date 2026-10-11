@@ -1,34 +1,85 @@
-/* Projects page */
+/* Projects list (/projects) and project detail (/projects/:slug) */
 
 .project-list {
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
+/* One row: text on the left, image on the right */
 .project-card {
-  padding-bottom: 14px;
-  border-bottom: 1px solid #ccc;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
 }
 
-.project-card:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.project-card-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .project-card h2 {
   margin: 0 0 4px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .project-card p {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+/* Black pill button; underline appears on hover */
+.pill-button {
+  display: inline-block;
+  padding: 7px 22px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.pill-button:hover,
+.pill-button:focus-visible {
+  text-decoration: underline;
+}
+
+.project-image {
+  flex-shrink: 0;
+  width: 229px;
+  aspect-ratio: 320 / 200;
+  object-fit: cover;
+}
+
+.project-image-placeholder {
+  display: grid;
+  place-items: center;
+  background: #ddd;
+  color: #999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+}
+
+/* Detail page */
+.back-link {
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.project-image-large {
+  width: 100%;
+  margin: 8px 0 14px;
+  font-size: 40px;
+}
+
+.project-detail p {
+  margin: 0 0 12px;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 0;
+  margin: 0 0 18px;
   padding: 0;
   list-style: none;
 }
