@@ -90,6 +90,16 @@ a {
   margin: 0 0 20px;
 }
 
+/* Read by screen readers, not shown on screen */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .button {
   display: inline-block;
   padding: 8px 16px;

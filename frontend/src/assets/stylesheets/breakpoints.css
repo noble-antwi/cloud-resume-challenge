@@ -25,6 +25,17 @@
   .entry-date {
     text-align: left;
   }
+
+  /* Projects: image moves above the text */
+  .project-card {
+    flex-direction: column-reverse;
+    gap: 8px;
+    padding-bottom: 14px;
+  }
+
+  .project-card .project-image {
+    width: 100%;
+  }
 }
 
 /* Print: just the sheet */

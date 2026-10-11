@@ -8,6 +8,7 @@ import Layout from './Layout';
 import HomePage from './pages/HomePage';
 import ResumePage from './pages/ResumePage';
 import ProjectsPage from './pages/ProjectsPage';
+import ProjectPage from './pages/ProjectPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // Last, so screen-size rules override the page styles above.
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')).render(
           <Route index element={<HomePage />} />
           <Route path="resume" element={<ResumePage />} />
           <Route path="projects" element={<ProjectsPage />} />
+          <Route path="projects/:slug" element={<ProjectPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
