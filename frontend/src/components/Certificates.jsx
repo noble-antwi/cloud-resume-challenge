@@ -1,17 +1,13 @@
 import { resumeData } from '../data/resumeData';
-import './Certificates.css';
+import Section from './Section';
+import Entry from './Entry';
 
 export default function Certificates() {
   return (
-    <section className="certificates-section">
-      <h2>Certificates</h2>
-      <ul className="certificates-list">
-        {resumeData.certificates && resumeData.certificates.map((cert) => (
-          <li key={cert.id} className="certificate-item">
-            {cert.title} · {cert.issuer} · {cert.date}
-          </li>
-        ))}
-      </ul>
-    </section>
+    <Section id="certificates" title="Certifications">
+      {resumeData.certificates.map((cert) => (
+        <Entry key={cert.id} title={cert.title} location={cert.issuer} date={cert.date} />
+      ))}
+    </Section>
   );
 }

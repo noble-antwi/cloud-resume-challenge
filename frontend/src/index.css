@@ -1,5 +1,180 @@
-/* Import all stylesheets in order */
-@import './styles/variables.css';
-@import './styles/mobile.css';
-@import './styles/breakpoints.css';
-@import './styles/accessibility.css';
+/* Paper-style resume, modelled on the Cloud Resume Challenge course layout. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #111;
+  background: #e2e4e2 url('/assets/images/paper.png') repeat;
+}
+
+a {
+  color: #1a0dab;
+}
+
+/* Top bar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 16px;
+  height: 48px;
+  background: #000;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.brand-logo {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #2f7d32;
+  font-size: 12px;
+}
+
+.navbar ul {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar li a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 16px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.navbar li a.active,
+.navbar li a:hover {
+  background: #333;
+}
+
+/* The sheet of paper */
+.page {
+  max-width: 716px;
+  margin: 22px auto 40px;
+  padding: 18px 18px 28px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.resume-header h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+
+.resume-header p {
+  margin: 0;
+}
+
+/* Sections */
+.resume-section {
+  margin-bottom: 22px;
+}
+
+.resume-section h2 {
+  margin: 0 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #555;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.entry {
+  margin-bottom: 14px;
+}
+
+.entry-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.entry-location,
+.entry-date {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.entry ul,
+.plain-list {
+  margin: 0;
+  padding-left: 23px;
+}
+
+.plain-list li {
+  margin-bottom: 4px;
+}
+
+.section-note {
+  margin: 0 0 8px;
+}
+
+/* Phones: the right-hand column drops under the left */
+@media (max-width: 600px) {
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .entry-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .entry-location,
+  .entry-date {
+    text-align: left;
+  }
+
+  .navbar {
+    gap: 8px;
+  }
+
+  .brand-name {
+    display: none;
+  }
+}
+
+@media print {
+  .navbar {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}

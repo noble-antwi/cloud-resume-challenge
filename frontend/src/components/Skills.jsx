@@ -1,18 +1,16 @@
 import { resumeData } from '../data/resumeData';
-import './Skills.css';
+import Section from './Section';
 
 export default function Skills() {
   return (
-    <section className="skills-section">
-      <h2>Skills</h2>
-      <ul className="skills-list">
+    <Section id="skills" title="Skills">
+      <ul className="plain-list">
         {resumeData.skills.map((skill) => (
-          <li key={skill.id} className="skill-item">
-            <span className="skill-category">{skill.category}:</span>{' '}
-            <span className="skill-description">{skill.description}</span>
+          <li key={skill.id}>
+            <strong>{skill.category}:</strong> {skill.description}
           </li>
         ))}
       </ul>
-    </section>
+    </Section>
   );
 }

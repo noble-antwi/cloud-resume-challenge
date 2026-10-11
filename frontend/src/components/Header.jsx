@@ -1,18 +1,20 @@
 import { resumeData } from '../data/resumeData';
-import './Header.css';
 
 export default function Header() {
+  const { name, location, email, linkedin, portfolio } = resumeData.personal;
+  const portfolioLabel = portfolio.replace('https://', '').replace(/\/$/, '');
+
   return (
     <header className="resume-header">
-      <h1 className="header-name">{resumeData.personal.name}</h1>
-      <p className="header-contact">
-        {resumeData.personal.location} | {' '}
-        <a href={`mailto:${resumeData.personal.email}`}>{resumeData.personal.email}</a> | {' '}
-        <a href={resumeData.personal.linkedin} target="_blank" rel="noreferrer">
+      <h1>{name}</h1>
+      <p>
+        {location} • <a href={`mailto:${email}`}>{email}</a> •{' '}
+        <a href={linkedin} target="_blank" rel="noreferrer">
           linkedin.com/in/noble-antwi-worlanyo
-        </a> | {' '}
-        <a href={resumeData.personal.portfolio} target="_blank" rel="noreferrer">
-          {resumeData.personal.portfolio}
+        </a>{' '}
+        •{' '}
+        <a href={portfolio} target="_blank" rel="noreferrer">
+          {portfolioLabel}
         </a>
       </p>
     </header>

@@ -1,21 +1,19 @@
 import { resumeData } from '../data/resumeData';
-import './Education.css';
+import Section from './Section';
+import Entry from './Entry';
 
 export default function Education() {
   return (
-    <section className="education-section">
-      <h2>Education</h2>
-      <div className="education-list">
-        {resumeData.education.map((edu) => (
-          <div key={edu.id} className="education-item">
-            <div className="education-header">
-              <h3>{edu.school}</h3>
-              <span className="education-period">{edu.period}</span>
-            </div>
-            <p className="education-degree">{edu.degree}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <Section id="education" title="Education">
+      {resumeData.education.map((edu) => (
+        <Entry
+          key={edu.id}
+          title={edu.school}
+          location={edu.location}
+          subtitle={edu.degree}
+          date={edu.period}
+        />
+      ))}
+    </Section>
   );
 }

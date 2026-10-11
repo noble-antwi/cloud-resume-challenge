@@ -1,41 +1,21 @@
-import { useState } from 'react';
-import '../styles/style.css';
+import { resumeData } from '../data/resumeData';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
-
   return (
     <nav className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-logo">NWA</div>
-        <button 
-          className="navbar-toggle" 
-          onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMenuOpen}
-        >
-          <span className="hamburger"></span>
-          <span className="hamburger"></span>
-          <span className="hamburger"></span>
-        </button>
-        <ul className={`navbar-menu ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="/" className="navbar-link" onClick={handleLinkClick}>HOME</a></li>
-          <li><a href="#education" className="navbar-link" onClick={handleLinkClick}>EDUCATION</a></li>
-          <li><a href="#experience" className="navbar-link" onClick={handleLinkClick}>EXPERIENCE</a></li>
-          <li><a href="#skills" className="navbar-link" onClick={handleLinkClick}>SKILLS</a></li>
-          <li><a href="#certificates" className="navbar-link" onClick={handleLinkClick}>CERTIFICATES</a></li>
-          <li><a href="#publications" className="navbar-link" onClick={handleLinkClick}>PUBLICATIONS</a></li>
-          <li><a href="#leadership" className="navbar-link" onClick={handleLinkClick}>LEADERSHIP</a></li>
-        </ul>
-      </div>
+      <a href="/" className="brand" aria-label="Home">
+        <span className="brand-logo">NA</span>
+        <span className="brand-name">Noble Antwi</span>
+      </a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="#resume" className="active">Resume</a></li>
+        <li>
+          <a href={resumeData.personal.portfolio} target="_blank" rel="noreferrer">
+            Projects
+          </a>
+        </li>
+      </ul>
     </nav>
   );
 }
