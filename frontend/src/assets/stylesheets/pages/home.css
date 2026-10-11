@@ -1,0 +1,29 @@
+/* Home page */
+
+.home {
+  text-align: center;
+  padding: 40px 24px 36px;
+}
+
+.home h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.home-tagline {
+  margin: 0 0 18px;
+  font-weight: bold;
+  color: #444;
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.home-links {
+  margin: 0;
+}

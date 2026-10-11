@@ -1,172 +1,96 @@
-# Frontend Technical Specification
+# Frontend
 
-A responsive, mobile-first resume website built with React and Vite.
+The resume website: a React + Vite app with three pages (Home, Resume, Projects), styled as a printed resume on handmade paper.
 
 ## Tech Stack
 
 - **Framework**: React 19
 - **Build Tool**: Vite 5
-- **Styling**: Pure CSS with CSS Variables (mobile-first approach)
-- **CSS Processing**: PostCSS with nesting support
-- **Routing**: React Router DOM
+- **Routing**: React Router 7
+- **Styling**: Plain CSS, one shared stylesheet plus one per page
+- **Linting**: ESLint 9
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher recommended)
+
+- Node.js 18 or newer
 - npm
 
-### Installation
+### Install
 
 ```bash
 cd frontend
-npm install
+npm ci
 ```
 
-### Development
+Use `npm ci`, not `npm install`. It installs the exact versions in `package-lock.json`, so the build behaves the same on every machine.
+
+### Run locally
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:5173` to view the resume.
+Open `http://localhost:5173`.
 
-### Production Build
+### Check and build
 
 ```bash
-npm run build
-npm run preview  # Preview the production build
+npm run lint      # code checks, must pass before pushing
+npm run build     # production build into dist/
+npm run preview   # serve dist/ locally
 ```
 
 ## Project Structure
 
 ```
 frontend/
-├── public/
-│   └── images/           # Background images
+├── index.html                    # page shell: title, favicon, description
+├── public/                       # served as-is at the site root
+│   ├── favicon.svg
+│   └── images/paper.png          # tiled background texture
 ├── src/
+│   ├── main.jsx                  # router + global stylesheets
+│   ├── Layout.jsx                # top bar + current page
+│   ├── pages/                    # one component per route
+│   │   ├── HomePage.jsx          #   /
+│   │   ├── ResumePage.jsx        #   /resume
+│   │   ├── ProjectsPage.jsx      #   /projects
+│   │   └── NotFoundPage.jsx      #   anything else
 │   ├── components/
-│   │   └── Navbar.jsx    # Responsive navigation with hamburger menu
-│   ├── pages/
-│   │   └── Home.jsx      # Main resume content
-│   ├── styles/
-│   │   ├── variables.css    # CSS custom properties & design tokens
-│   │   ├── mobile.css       # Base mobile-first styles
-│   │   ├── breakpoints.css  # Tablet & desktop responsive overrides
-│   │   ├── accessibility.css # Reduced motion & high contrast support
-│   │   └── style.css        # Additional component styles
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css         # CSS imports orchestration
-├── postcss.config.js     # PostCSS configuration for CSS nesting
-├── vite.config.js
-└── package.json
+│   │   ├── layout/Navbar.jsx
+│   │   ├── resume/               # ResumeHeader, Section, Entry, and one per resume section
+│   │   └── projects/ProjectCard.jsx
+│   ├── data/
+│   │   ├── resumeData.js         # all resume content
+│   │   └── projectsData.js       # all project content
+│   └── assets/stylesheets/
+│       ├── default.css           # base type, top bar, paper sheet, buttons
+│       ├── breakpoints.css       # phone and print rules (loaded last)
+│       └── pages/                # home.css, resume.css, projects.css
+├── vite.config.js                # aliases: '@' = src, 'css' = src/assets/stylesheets
+├── postcss.config.js
+└── eslint.config.js
 ```
 
-## CSS Architecture
+### Conventions
 
-### Mobile-First Approach
+- **Content lives in `src/data/`.** To change what the site says, edit `resumeData.js` or `projectsData.js`. Components only handle layout.
+- **Each page imports its own stylesheet**, for example `import 'css/pages/resume.css'`.
+- **Import from `src` with `@`**, for example `import { resumeData } from '@/data/resumeData'`, instead of `../../`.
+- **Resume entries use `Entry`**: bold title and location on the first row, subtitle and italic date on the second, and optional bullets.
 
-Styles are organized following a mobile-first methodology:
+## Adding a page
 
-1. **variables.css** - Design tokens (colors, typography, spacing)
-2. **mobile.css** - Base styles optimized for mobile devices
-3. **breakpoints.css** - Progressive enhancements for larger screens
-4. **accessibility.css** - User preference support (reduced motion, high contrast)
-5. **style.css** - Additional component-specific styles
+1. Create `src/pages/NewPage.jsx` and `src/assets/stylesheets/pages/new.css`.
+2. Add a `<Route path="new" element={<NewPage />} />` in `src/main.jsx`.
+3. Add a link to the `links` list in `src/components/layout/Navbar.jsx`.
 
-### Responsive Breakpoints
+## Hosting note
 
-| Breakpoint | Target |
-|------------|--------|
-| Base (default) | Mobile phones |
-| `640px` | Tablets |
-| `1024px` | Desktop |
-| `1440px` | Large desktop |
-
-### Design System
-
-#### Color Palette
-
-| Variable | Value | Usage |
-|----------|-------|-------|
-| `--color-primary` | `#1e3a5f` | Headers, accents |
-| `--color-primary-light` | `#2d5a8c` | Hover states |
-| `--color-accent-teal` | `#06b6d4` | Highlights |
-| `--color-text-dark` | `#1f2937` | Body text |
-| `--color-text-light` | `#6b7280` | Secondary text |
-
-#### Typography
-
-- **Font Family**: Segoe UI, Tahoma, Geneva, Verdana, sans-serif
-- **Font Sizes**: `0.875rem` to `2rem` (responsive)
-- **Font Weights**: 500 (medium), 600 (semibold), 700 (bold)
-
-#### Spacing Scale
-
-```css
---spacing-xs: 0.25rem   /* 4px */
---spacing-sm: 0.5rem    /* 8px */
---spacing-md: 1rem      /* 16px */
---spacing-lg: 1.5rem    /* 24px */
---spacing-xl: 2rem      /* 32px */
---spacing-2xl: 2.5rem   /* 40px */
-```
-
-## Features
-
-### Responsive Navigation
-
-- **Mobile**: Hamburger menu with slide-down dropdown
-- **Desktop**: Horizontal navigation bar with hover effects
-- Smooth transitions and accessible focus states
-
-### Accessibility
-
-- WCAG-compliant color contrast
-- Keyboard navigation support
-- `prefers-reduced-motion` support
-- `prefers-contrast: more` support
-- Visible focus indicators
-
-### Performance
-
-- No CSS frameworks (minimal bundle size)
-- Efficient CSS selectors
-- Hardware-accelerated animations
-- Optimized for Core Web Vitals
+The pages are client-side routes. When this is deployed to S3 + CloudFront, set CloudFront to return `index.html` for 403/404 errors. Otherwise `/resume` and `/projects` fail when opened directly or refreshed.
 
 ## Resume Format
 
-Based on the [Illinois Institute of Technology Resume Template](https://www.iit.edu/sites/default/files/2023-03/new_sample_resume_iltech_1.doc).
-
-### Sections
-
-- Header (Name, Contact, Links)
-- Education
-- Skills
-- Work Experience
-- Certificates
-- Publications
-- Leadership & Activities
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Recent Updates (January 2026)
-
-### Mobile-First Refactor
-- Migrated from static HTML to React + Vite
-- Implemented mobile-first CSS architecture
-- Added collapsible hamburger menu for mobile navigation
-- Split CSS into modular files for better maintainability
-
-### CSS Improvements
-- Added PostCSS for CSS nesting support
-- Implemented CSS custom properties for theming
-- Added accessibility stylesheets for user preferences
-- Fixed CSS syntax errors that prevented app loading
+Content follows the Illinois Institute of Technology resume template, kept in `../docs/reference/`.

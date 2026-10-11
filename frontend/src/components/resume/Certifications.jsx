@@ -1,8 +1,8 @@
-import { resumeData } from '../data/resumeData';
+import { resumeData } from '@/data/resumeData';
 import Section from './Section';
 import Entry from './Entry';
 
-export default function Certificates() {
+export default function Certifications() {
   return (
     <Section id="certificates" title="Certifications">
       {resumeData.certificates.map((cert) => (
