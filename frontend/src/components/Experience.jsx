@@ -1,26 +1,19 @@
 import { resumeData } from '../data/resumeData';
-import './Experience.css';
+import Section from './Section';
+import Entry from './Entry';
 
 export default function Experience() {
   return (
-    <section className="experience-section">
-      <h2>Work Experience</h2>
-      <div className="experience-list">
-        {resumeData.experience.map((job) => (
-          <div key={job.id} className="experience-item">
-            <div className="experience-header">
-              <h3>{job.title}</h3>
-              <span className="experience-period">{job.period}</span>
-            </div>
-            <p className="experience-company">{job.company}</p>
-            <ul className="experience-responsibilities">
-              {job.responsibilities.map((responsibility, idx) => (
-                <li key={idx}>{responsibility}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
+    <Section id="experience" title="Experience">
+      {resumeData.experience.map((job) => (
+        <Entry
+          key={job.id}
+          title={`${job.company} - ${job.title}`}
+          location={job.location}
+          date={job.period}
+          bullets={job.responsibilities}
+        />
+      ))}
+    </Section>
   );
 }

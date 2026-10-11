@@ -1,6 +1,6 @@
 export const resumeData = {
   personal: {
-    name: "NOBLE W. ANTWI",
+    name: "Noble W. Antwi",
     location: "Chicago, IL",
     email: "amnworlanyo@gmail.com",
     linkedin: "https://www.linkedin.com/in/noble-antwi-worlanyo",
@@ -9,13 +9,15 @@ export const resumeData = {
   education: [
     {
       id: 1,
-      school: "Illinois Institute of Technology, Chicago, IL",
+      school: "Illinois Institute of Technology",
+      location: "Chicago, IL",
       degree: "Master of Science in Cyber Security and Forensics",
       period: "August 2024 - May 2026",
     },
     {
       id: 2,
-      school: "University of Mines and Technology, Tarkwa - Ghana",
+      school: "University of Mines and Technology",
+      location: "Tarkwa, Ghana",
       degree: "BSc. Computer Science and Engineering",
       period: "September 2013 - July 2017",
     },
@@ -61,7 +63,8 @@ export const resumeData = {
     {
       id: 1,
       title: "Cybercrime Analyst Intern",
-      company: "Cook County State's Attorney's Office, Chicago, IL",
+      company: "Cook County State's Attorney's Office",
+      location: "Chicago, IL",
       period: "September 2025 - Present",
       responsibilities: [
         "Assisting with graduate cybersecurity coursework in vulnerability analysis and penetration testing frameworks.",
@@ -73,7 +76,8 @@ export const resumeData = {
     {
       id: 2,
       title: "Teaching Assistant - Vulnerability Analysis and Control",
-      company: "Illinois Institute of Technology, Chicago",
+      company: "Illinois Institute of Technology",
+      location: "Chicago, IL",
       period: "August 2025 – Present",
       responsibilities: [
         "Assisting with graduate cybersecurity coursework in vulnerability analysis and penetration testing frameworks.",
@@ -85,7 +89,8 @@ export const resumeData = {
     {
       id: 3,
       title: "Information Technology (IT) Risk Analyst (Intern)",
-      company: "Wintrust Financial Corporation, Rosemont - IL",
+      company: "Wintrust Financial Corporation",
+      location: "Rosemont, IL",
       period: "May 2025 – August 2025",
       responsibilities: [
         "Mapped COBIT 2019 governance components to the Risk Control Self-Assessment (RCSA) framework, closing key control gaps, streamlining internal audits, and improving IT-business control alignment by 30%, in collaboration with enterprise risk and compliance teams.",
@@ -99,7 +104,8 @@ export const resumeData = {
     {
       id: 4,
       title: "Technical Support Specialist",
-      company: "Illinois Institute of Technology, Chicago - IL",
+      company: "Illinois Institute of Technology",
+      location: "Chicago, IL",
       period: "November 2024 – Current",
       responsibilities: [
         "Provided end-user support for a student and faculty population of 8,500+, resolving 100+ weekly technical requests across Windows, macOS, and Linux environments with a 95%+ first-contact resolution rate.",
@@ -111,7 +117,8 @@ export const resumeData = {
     {
       id: 5,
       title: "Cloud Security Engineer",
-      company: "Hubtel, Accra - Ghana",
+      company: "Hubtel",
+      location: "Accra, Ghana",
       period: "January 2024 – August 2024",
       responsibilities: [
         "Established cloud security framework using AWS CloudTrail, GuardDuty, and Config to meet Bank of Ghana regulatory requirements, implementing encryption-at-rest for all financial data and achieving ISO 27001 compliance readiness.",
@@ -123,7 +130,8 @@ export const resumeData = {
     {
       id: 6,
       title: "Cloud Engineer",
-      company: "Hubtel, Accra - Ghana",
+      company: "Hubtel",
+      location: "Accra, Ghana",
       period: "November 2022 – December 2023",
       responsibilities: [
         "Built a comprehensive monitoring and alerting system using CloudWatch and custom Lambda functions, reducing payment gateway response time by 40% and decreasing system downtime incidents by 65% through proactive issue detection.",
@@ -135,7 +143,8 @@ export const resumeData = {
     {
       id: 7,
       title: "Identity and Access Management (IAM) Analyst",
-      company: "Adidas AG - Contractor with HWS-Gruppe, Neustadt, Germany",
+      company: "Adidas AG (Contractor with HWS-Gruppe)",
+      location: "Neustadt, Germany",
       period: "November 2021 - October 2022",
       responsibilities: [
         "Administered identity lifecycle operations across 5,000+ users using Active Directory and Microsoft Entra ID, reducing onboarding/offboarding times by 30% through streamlined provisioning processes.",
@@ -150,7 +159,8 @@ export const resumeData = {
     {
       id: 8,
       title: "Cybersecurity Analyst",
-      company: "Ghana Health Service, Ghana",
+      company: "Ghana Health Service",
+      location: "Ghana",
       period: "October 2020 - October 2021",
       responsibilities: [
         "Conducted weekly vulnerability assessments using Nessus, reducing the hospital's exposed attack surface by over 40% within 6 months through targeted remediation strategies.",
@@ -164,7 +174,8 @@ export const resumeData = {
     {
       id: 9,
       title: "Information Technology Specialist",
-      company: "Ghana Health Service, Ghana",
+      company: "Ghana Health Service",
+      location: "Ghana",
       period: "September 2018 - September 2020",
       responsibilities: [
         "Integrated 25+ medical devices (X-ray machines, patient monitors, lab equipment) with hospital information systems, reducing manual data entry by 75% and eliminating transcription errors that previously affected 12% of lab results.",
@@ -177,7 +188,8 @@ export const resumeData = {
     {
       id: 10,
       title: "Teaching Assistant",
-      company: "University of Mines and Technology, Tarkwa, Ghana",
+      company: "University of Mines and Technology",
+      location: "Tarkwa, Ghana",
       period: "September 2017 – August 2018",
       responsibilities: [
         "Supported the instruction of over 250 undergraduate students in Programming in Python and Computer Networking, facilitating both theoretical and practical learning.",
